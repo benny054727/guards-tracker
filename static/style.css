@@ -44,6 +44,7 @@ th {
     background-color: #eee;
 }
 
+/* תגיות צבעוניות בתוך תאים */
 .status-ok {
     background-color: #d2f8d2;
     padding: 5px 10px;
@@ -60,16 +61,11 @@ th {
     font-weight: bold;
 }
 
-.status-green {
-    background-color: white;
-}
-
-.status-yellow {
-    background-color: #fff3b0;
-}
-
+/* ביטול רקע של שורות */
+.status-green,
+.status-yellow,
 .status-red {
-    background-color: #f8d2d2;
+    background-color: transparent;
 }
 
 input[type="text"],
