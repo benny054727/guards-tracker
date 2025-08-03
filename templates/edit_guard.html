@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>עריכת מאבטח</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>עריכת מאבטח: {{ guard.name }}</h1>
+    <form method="post">
+        <input type="text" name="level" value="{{ guard.level }}" required><br>
+        <input type="date" name="last_refresh" value="{{ guard.last_refresh }}" required><br>
+        <input type="date" name="health_declaration" value="{{ guard.health_declaration }}" required><br><br>
+        <button type="submit">עדכן</button>
+        <a href="{{ url_for('home') }}"><button type="button">ביטול</button></a>
+    </form>
+</body>
+</html>

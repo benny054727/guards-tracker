@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>פרטי מאבטח</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>פרטי מאבטח</h1>
+
+    <div class="details-box">
+        <p><strong>שם:</strong> {{ guard.name }}</p>
+        <p><strong>דרגה:</strong> {{ guard.level }}</p>
+
+        {% set refresh_expired = (datetime.strptime(guard.last_refresh, '%Y-%m-%d') + timedelta(days=180)) < datetime.today() %}
+        {% set health_expired = (datetime.strptime(guard.health_declaration, '%Y-%m-%d') + timedelta(days=365)) < datetime.today() %}
+
+        <p><strong>תאריך רענון:</strong> {{ guard.last_refresh | format_date }}
+            <span class="{{ 'status-ok' if not refresh_expired else 'status-late' }}">
+                {{ 'בתוקף' if not refresh_expired else 'פג תוקף' }}
+            </span>
+        </p>
+
+        <p><strong>תאריך הצהרת בריאות:</strong> {{ guard.health_declaration | format_date }}
+            <span class="{{ 'status-ok' if not health_expired else 'status-late' }}">
+                {{ 'בתוקף' if not health_expired else 'פג תוקף' }}
+            </span>
+        </p>
+
+        <a href="{{ url_for('home') }}">
+            <button class="back-button">⬅ חזרה לרשימה</button>
+        </a>
+    </div>
+</body>
+</html>

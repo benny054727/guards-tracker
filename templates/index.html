@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>רשימת מאבטחים</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+    {% if username %}
+    <p class="welcome">ברוך הבא, {{ username }} | <a href="{{ url_for('logout') }}">התנתק</a></p>
+    {% endif %}
+
+    <h1>רשימת מאבטחים</h1>
+    <p class="subtitle">בדיקת תוקף רענונים והצהרות בריאות</p>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="חפש לפי שם או דרגה..." oninput="filterTable()">
+        <button onclick="clearSearch()">נקה חיפוש</button>
+    </div>
+
+    <a href="{{ url_for('add_guard') }}"><button>➕ הוסף מאבטח</button></a>
+
+    <table id="guardsTable">
+        <thead>
+            <tr>
+                <th>שם</th>
+                <th>דרגה</th>
+                <th>תאריך רענון</th>
+                <th>תאריך הצהרת בריאות</th>
+                <th>פעולות</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for g in guards %}
+            {% set refresh_expired = datetime.strptime(g.last_refresh, '%Y-%m-%d') + timedelta(days=180) < datetime.today() %}
+            {% set health_expired = datetime.strptime(g.health_declaration, '%Y-%m-%d') + timedelta(days=365) < datetime.today() %}
+            <tr class="{% if refresh_expired and health_expired %}status-red{% elif refresh_expired or health_expired %}status-yellow{% else %}status-green{% endif %}">
+                <td>{{ g.name }}</td>
+                <td>{{ g.level }}</td>
+                <td>
+                    {{ g.last_refresh | format_date }}
+                    {% if refresh_expired %}
+                        <div class="status-late">פג תוקף</div>
+                    {% else %}
+                        <div class="status-ok">בתוקף</div>
+                    {% endif %}
+                </td>
+                <td>
+                    {{ g.health_declaration | format_date }}
+                    {% if health_expired %}
+                        <div class="status-late">פג תוקף</div>
+                    {% else %}
+                        <div class="status-ok">בתוקף</div>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{{ url_for('guard_details', name=g.name) }}">צפייה</a> |
+                    <a href="{{ url_for('edit_guard', name=g.name) }}">עריכה</a> |
+                    <a href="{{ url_for('delete_guard', name=g.name) }}" onclick="return confirm('האם אתה בטוח שברצונך למחוק את המאבטח?')">❌</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

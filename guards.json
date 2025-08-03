@@ -1,0 +1,20 @@
+[
+    {
+        "name": "יוסי לוי",
+        "level": "מתקדם א'",
+        "last_refresh": "2025-05-10",
+        "health_declaration": "2024-01-15"
+    },
+    {
+        "name": "דן כהן",
+        "level": "בסיסי",
+        "last_refresh": "2024-12-20",
+        "health_declaration": "2023-11-30"
+    },
+    {
+        "name": "בנימין אמבאו",
+        "level": "מתקדם ב'",
+        "last_refresh": "2025-04-16",
+        "health_declaration": "2025-04-23"
+    }
+]
