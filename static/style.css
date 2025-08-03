@@ -1,13 +1,20 @@
 body {
     font-family: Arial, sans-serif;
     direction: rtl;
-    text-align: center;
-    background-color: #f9f9f9;
+    background-color: #f4f4f4;
     padding: 20px;
+    text-align: center;
 }
 
 h1 {
     color: #333;
+    margin-bottom: 25px;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 20px;
 }
 
 .welcome {
@@ -19,13 +26,14 @@ h1 {
 .welcome a {
     margin-right: 10px;
     text-decoration: none;
-    color: #007bff;
+    color: #8e44ad;
 }
 
 .welcome a:hover {
     text-decoration: underline;
 }
 
+/* טבלה לדף הבית */
 table {
     border-collapse: collapse;
     width: 90%;
@@ -44,69 +52,60 @@ th {
     background-color: #eee;
 }
 
-/* תגיות צבעוניות בתוך תאים */
-.status-ok {
+.status-green {
     background-color: #d2f8d2;
-    padding: 5px 10px;
+}
+
+.status-yellow {
+    background-color: #fff3b0;
+}
+
+.status-red {
+    background-color: #f8d2d2;
+}
+
+/* תגיות סטטוס */
+.status-ok {
+    background-color: #a6e6a6;
+    padding: 4px 8px;
     border-radius: 6px;
     display: inline-block;
     font-weight: bold;
 }
 
 .status-late {
-    background-color: #f8d2d2;
-    padding: 5px 10px;
+    background-color: #f9a6a6;
+    padding: 4px 8px;
     border-radius: 6px;
     display: inline-block;
     font-weight: bold;
 }
 
-/* ביטול רקע של שורות */
-.status-green,
-.status-yellow,
-.status-red {
-    background-color: transparent;
-}
-
-input[type="text"],
-input[type="password"],
-input[type="date"] {
-    padding: 10px;
-    width: 250px;
-    margin: 10px 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
+/* כפתורים */
 button {
     padding: 10px 15px;
     font-size: 14px;
-    background-color: #eee;
+    background-color: #4285f4;
+    color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
+    margin: 5px;
 }
 
 button:hover {
-    background-color: #ddd;
+    background-color: #357ae8;
 }
 
-.alert-text {
-    background-color: #ffe0e0;
-    color: #cc0000;
-    font-weight: bold;
-    padding: 6px 10px;
-    border-radius: 5px;
-    display: inline-block;
+button[type="button"] {
+    background-color: #888;
 }
 
-.subtitle {
-    font-size: 18px;
-    color: #555;
-    margin-bottom: 25px;
+button[type="button"]:hover {
+    background-color: #666;
 }
 
+/* שדה חיפוש */
 .search-container {
     display: flex;
     justify-content: center;
@@ -115,11 +114,49 @@ button:hover {
     margin-bottom: 20px;
 }
 
-.details-box {
+input[type="text"],
+input[type="date"],
+select {
+    padding: 10px;
+    font-size: 16px;
     border: 1px solid #ccc;
-    padding: 20px;
-    width: 50%;
-    margin: auto;
+    border-radius: 5px;
+    width: 250px;
+}
+
+/* טופס עריכה */
+.form-card {
     background-color: white;
-    border-radius: 10px;
+    max-width: 500px;
+    margin: auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    text-align: right;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #444;
+}
+
+.readonly-field {
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #eee;
+    border-radius: 5px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
 }

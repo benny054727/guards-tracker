@@ -87,6 +87,7 @@ def edit_guard(name):
         return "מאבטח לא נמצא", 404
 
     if request.method == "POST":
+        # שמירה על שם קבוע
         guard["level"] = request.form["level"]
         guard["last_refresh"] = request.form["last_refresh"]
         guard["health_declaration"] = request.form["health_declaration"]

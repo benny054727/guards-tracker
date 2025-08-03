@@ -6,14 +6,41 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+
     <h1>הוספת מאבטח חדש</h1>
-    <form method="post">
-        <input type="text" name="name" placeholder="שם מלא" required><br>
-        <input type="text" name="level" placeholder="דרגה" required><br>
-        <input type="date" name="last_refresh" required><br>
-        <input type="date" name="health_declaration" required><br><br>
-        <button type="submit">שמור</button>
-        <a href="{{ url_for('home') }}"><button type="button">ביטול</button></a>
+
+    <form method="post" class="form-card">
+
+        <div class="form-group">
+            <label for="name">שם מלא:</label>
+            <input type="text" name="name" id="name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="level">דרגה:</label>
+            <select name="level" id="level" required>
+                <option value="" disabled selected hidden>בחר דרגה</option>
+                <option value="מתקדם א'">מתקדם א'</option>
+                <option value="מתקדם ב'">מתקדם ב'</option>
+                <option value="בסיסי">בסיסי</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="last_refresh">תאריך רענון אחרון:</label>
+            <input type="date" name="last_refresh" id="last_refresh" required>
+        </div>
+
+        <div class="form-group">
+            <label for="health_declaration">תוקף הצהרת בריאות:</label>
+            <input type="date" name="health_declaration" id="health_declaration" required>
+        </div>
+
+        <div class="button-group">
+            <button type="submit">שמור</button>
+            <a href="{{ url_for('home') }}"><button type="button">ביטול</button></a>
+        </div>
     </form>
+
 </body>
 </html>

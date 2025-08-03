@@ -6,13 +6,38 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>עריכת מאבטח: {{ guard.name }}</h1>
-    <form method="post">
-        <input type="text" name="level" value="{{ guard.level }}" required><br>
-        <input type="date" name="last_refresh" value="{{ guard.last_refresh }}" required><br>
-        <input type="date" name="health_declaration" value="{{ guard.health_declaration }}" required><br><br>
-        <button type="submit">עדכן</button>
-        <a href="{{ url_for('home') }}"><button type="button">ביטול</button></a>
-    </form>
+    <h1>עריכת מאבטח</h1>
+    <div class="form-card">
+        <form method="post">
+            <div class="form-group">
+                <label>שם:</label>
+                <div class="readonly-field">{{ guard.name }}</div>
+            </div>
+
+            <div class="form-group">
+                <label for="level">דרגה:</label>
+                <select name="level" id="level" required>
+                    <option value="בסיסי" {% if guard.level == 'בסיסי' %}selected{% endif %}>בסיסי</option>
+                    <option value="מתקדם א'" {% if guard.level == "מתקדם א'" %}selected{% endif %}>מתקדם א'</option>
+                    <option value="מתקדם ב'" {% if guard.level == "מתקדם ב'" %}selected{% endif %}>מתקדם ב'</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="last_refresh">תאריך רענון אחרון:</label>
+                <input type="date" name="last_refresh" id="last_refresh" value="{{ guard.last_refresh }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="health_declaration">תוקף הצהרת בריאות:</label>
+                <input type="date" name="health_declaration" id="health_declaration" value="{{ guard.health_declaration }}" required>
+            </div>
+
+            <div class="button-group">
+                <button type="submit">שמור</button>
+                <a href="{{ url_for('home') }}"><button type="button">ביטול</button></a>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
